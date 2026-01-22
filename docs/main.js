@@ -460,6 +460,7 @@ function animateHero() {
 let displayTargetRotY = Math.PI / 2;
 let displayTargetRotX = 0;
 let displayTargetPosY = 0;
+let displayScrollRotX = 0; // Scroll-influenced rotation (separate from animation)
 
 function animateDisplay() {
     displayAnimationId = requestAnimationFrame(animateDisplay);
@@ -469,7 +470,8 @@ function animateDisplay() {
     if (displayPhone) {
         // Calculate target values
         displayTargetRotY = Math.PI / 2 + Math.sin(elapsedTime * 0.2) * 0.03;
-        displayTargetRotX = Math.sin(elapsedTime * 0.3) * 0.02;
+        // Combine subtle animation with scroll-based rotation
+        displayTargetRotX = Math.sin(elapsedTime * 0.3) * 0.02 + displayScrollRotX;
         displayTargetPosY = Math.sin(elapsedTime * 0.4) * 0.05;
         
         // Smooth lerp to targets
@@ -568,7 +570,7 @@ function initScrollAnimations() {
     window.addEventListener('scroll', () => {
         scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
         
-        // Update display phone rotation based on scroll
+        // Update display phone rotation target based on scroll (uses the lerp target variable)
         if (displayPhone) {
             const displaySection = document.getElementById('display');
             if (displaySection) {
@@ -576,7 +578,12 @@ function initScrollAnimations() {
                 const sectionProgress = 1 - (rect.top / window.innerHeight);
                 
                 if (sectionProgress > 0 && sectionProgress < 2) {
-                    displayPhone.rotation.x = (sectionProgress - 0.5) * 0.3;
+                    // Update the target variable instead of directly setting rotation
+                    // This allows the animation loop to smoothly lerp to the new value
+                    displayScrollRotX = (sectionProgress - 0.5) * 0.3;
+                } else {
+                    // Reset scroll influence when outside the display section
+                    displayScrollRotX = 0;
                 }
             }
         }
