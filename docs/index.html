@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Phone | The Future in Your Hands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-ring"></div>
+            <span class="loader-text">Loading Experience</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L4 8v16l12 6 12-6V8L16 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M16 14v8M12 12l4 2 4-2" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>NEXUS</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero">Overview</a>
+            <a href="#story">Story</a>
+            <a href="#features">Features</a>
+            <a href="#specs">Specs</a>
+        </div>
+        <a href="#preorder" class="nav-cta">Pre-order</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Introducing
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Nexus</span>
+                <span class="title-line">Phone</span>
+            </h1>
+            <p class="hero-subtitle">The future, reimagined. A seamless fusion of art and technology that transcends everything you know about smartphones.</p>
+            <div class="hero-cta">
+                <a href="#features" class="btn-primary">
+                    <span>Experience Now</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#preorder" class="btn-secondary">Pre-order</a>
+            </div>
+        </div>
+        <div class="hero-3d" id="hero-canvas"></div>
+        <div class="hero-scroll">
+            <span>Scroll to explore</span>
+            <div class="scroll-indicator">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-content">
+            <span class="section-label">The Origin</span>
+            <h2 class="section-title">Born from<br><span class="gradient-text">obsession.</span></h2>
+            <div class="story-text">
+                <p>
+                    In a hidden laboratory beneath the Swiss Alps, a team of 47 engineers spent 
+                    1,847 days pursuing an impossible dream. They called it Project Aurora — 
+                    a quest to create a device that could feel before you think, respond before 
+                    you act, and disappear when you need it most.
+                </p>
+                <p>
+                    Three prototypes were destroyed. Two engineers quit. One breakthrough changed 
+                    everything: the N1 Quantum Chip, a processor that doesn't just compute — it 
+                    anticipates. Built on principles borrowed from neuroscience and quantum mechanics, 
+                    it processes information the way the human mind does.
+                </p>
+                <p>
+                    The Nexus Phone isn't just a product. It's the culmination of 17 patents, 
+                    2,000 material tests, and a singular belief: that technology should feel 
+                    like an extension of yourself, not a distraction from life.
+                </p>
+            </div>
+            <div class="story-quote">
+                <blockquote>
+                    "We didn't set out to make a better phone. We set out to make the last phone 
+                    you'll ever need to think about."
+                </blockquote>
+                <cite>— Dr. Elena Vasquez, Chief Architect</cite>
+            </div>
+        </div>
+        <div class="story-visual">
+            <div class="story-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-header">
+            <span class="section-label">Capabilities</span>
+            <h2 class="section-title">Engineered for<br><span class="gradient-text">the impossible.</span></h2>
+        </div>
+        
+        <div class="features-grid three-col">
+            <div class="feature-card" data-feature="chip">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="18" y="18" width="12" height="12" rx="2" fill="currentColor"/>
+                        <path d="M24 4v8M24 36v8M4 24h8M36 24h8M8 8l6 6M34 8l-6 6M8 40l6-6M34 40l-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>N1 Quantum Chip</h3>
+                <p>6nm architecture delivering 40% faster performance with neural processing that learns your habits and anticipates your needs.</p>
+                <span class="feature-stat">4.2 TFLOPS</span>
+            </div>
+            
+            <div class="feature-card" data-feature="camera">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="26" r="10" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="24" cy="26" r="4" fill="currentColor"/>
+                        <path d="M8 16h6l4-6h12l4 6h6a4 4 0 014 4v20a4 4 0 01-4 4H8a4 4 0 01-4-4V20a4 4 0 014-4z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>Quantum Lens Array</h3>
+                <p>200MP main sensor with computational photography that captures light like never before. See in the dark. Freeze time.</p>
+                <span class="feature-stat">200 MP</span>
+            </div>
+            
+            <div class="feature-card" data-feature="display">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="4" width="32" height="40" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="12" y="8" width="24" height="28" rx="2" fill="currentColor" opacity="0.3"/>
+                        <circle cx="24" cy="40" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Infinity Edge Display</h3>
+                <p>6.9" ProMotion XDR display with 120Hz adaptive refresh. 2000 nits peak brightness that rivals the sun itself.</p>
+                <span class="feature-stat">120 Hz</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Display Section -->
+    <section class="display-section" id="display">
+        <div class="display-content">
+            <span class="section-label">Display</span>
+            <h2 class="section-title">Brilliance in<br><span class="gradient-text">every pixel.</span></h2>
+            <p class="display-description">
+                The Infinity Edge display pushes boundaries with its edge-to-edge design, 
+                HDR10+ support, and color accuracy that rivals professional monitors. 
+                Every detail comes alive with stunning clarity.
+            </p>
+            
+            <div class="display-stats">
+                <div class="stat">
+                    <span class="stat-value">2K</span>
+                    <span class="stat-label">Resolution</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">2000</span>
+                    <span class="stat-label">Peak Nits</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">1B</span>
+                    <span class="stat-label">Colors</span>
+                </div>
+            </div>
+        </div>
+        <div class="display-visual">
+            <div class="display-phone" id="display-phone"></div>
+            <div class="display-glow"></div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs-section" id="specs">
+        <div class="specs-header">
+            <span class="section-label">Technical</span>
+            <h2 class="section-title">Every detail,<br><span class="gradient-text">perfected.</span></h2>
+        </div>
+        
+        <div class="specs-grid three-col">
+            <div class="spec-category">
+                <h4>Display & Design</h4>
+                <ul>
+                    <li><span>Size</span><span>6.9" OLED</span></li>
+                    <li><span>Resolution</span><span>3200 × 1440</span></li>
+                    <li><span>Refresh Rate</span><span>1-120Hz Adaptive</span></li>
+                    <li><span>Peak Brightness</span><span>2000 nits</span></li>
+                    <li><span>Protection</span><span>Ceramic Shield</span></li>
+                    <li><span>Weight</span><span>189g</span></li>
+                </ul>
+            </div>
+            
+            <div class="spec-category">
+                <h4>Performance & Power</h4>
+                <ul>
+                    <li><span>Chip</span><span>N1 Quantum</span></li>
+                    <li><span>RAM</span><span>16GB LPDDR5X</span></li>
+                    <li><span>Storage</span><span>256GB / 512GB / 1TB</span></li>
+                    <li><span>Battery</span><span>5500 mAh</span></li>
+                    <li><span>Charging</span><span>150W Wired / 50W Wireless</span></li>
+                    <li><span>Full Charge</span><span>19 minutes</span></li>
+                </ul>
+            </div>
+            
+            <div class="spec-category">
+                <h4>Camera System</h4>
+                <ul>
+                    <li><span>Main</span><span>200MP f/1.7 OIS</span></li>
+                    <li><span>Ultra Wide</span><span>50MP f/2.2 120°</span></li>
+                    <li><span>Telephoto</span><span>64MP 5x Optical</span></li>
+                    <li><span>Front</span><span>32MP f/2.0</span></li>
+                    <li><span>Video</span><span>8K 30fps, 4K 120fps</span></li>
+                    <li><span>Features</span><span>Night Mode, ProRAW</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="preorder">
+        <div class="cta-visual" id="cta-canvas"></div>
+        <div class="cta-content">
+            <h2>Ready to experience<br><span class="gradient-text">the future?</span></h2>
+            <p>Pre-order now and be among the first to hold tomorrow in your hands.</p>
+            
+            <!-- Pre-order UI -->
+            <div class="preorder-ui">
+                <div class="preorder-options">
+                    <h4>Choose your storage</h4>
+                    <div class="storage-options">
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="256" checked>
+                            <span class="option-box">
+                                <span class="option-size">256GB</span>
+                                <span class="option-price">$1,199</span>
+                            </span>
+                        </label>
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="512">
+                            <span class="option-box">
+                                <span class="option-size">512GB</span>
+                                <span class="option-price">$1,399</span>
+                            </span>
+                        </label>
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="1024">
+                            <span class="option-box">
+                                <span class="option-size">1TB</span>
+                                <span class="option-price">$1,599</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <h4>Choose your color</h4>
+                    <div class="color-options">
+                        <label class="color-option">
+                            <input type="radio" name="color" value="midnight" checked>
+                            <span class="color-swatch midnight"></span>
+                            <span class="color-name">Midnight</span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="titanium">
+                            <span class="color-swatch titanium"></span>
+                            <span class="color-name">Titanium</span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="gold">
+                            <span class="color-swatch gold"></span>
+                            <span class="color-name">Aurora Gold</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="preorder-summary">
+                    <div class="summary-price">
+                        <span class="price-label">Total</span>
+                        <span class="price-value" id="total-price">$1,199</span>
+                    </div>
+                    <button class="btn-primary large preorder-btn">
+                        <span>Pre-order Now</span>
+                    </button>
+                    <span class="cta-note">Free shipping. Free returns. 24-month warranty.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2L4 8v16l12 6 12-6V8L16 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <path d="M16 14v8M12 12l4 2 4-2" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <span>NEXUS</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+                <a href="#">Contact</a>
+            </div>
+            <p class="footer-copyright">© 2026 Nexus Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Import Maps for Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
