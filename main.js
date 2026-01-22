@@ -160,18 +160,20 @@ function initDisplayScene() {
 }
 
 function setupDisplayLighting() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     displayScene.add(ambientLight);
     
-    const frontLight = new THREE.DirectionalLight(0x00d4ff, 1.2);
+    // Warm front light instead of blue
+    const frontLight = new THREE.DirectionalLight(0xffffff, 1.0);
     frontLight.position.set(0, 0, 5);
     displayScene.add(frontLight);
     
-    const topLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    const topLight = new THREE.DirectionalLight(0xffffff, 0.7);
     topLight.position.set(0, 5, 2);
     displayScene.add(topLight);
     
-    const sideLight = new THREE.DirectionalLight(0xf5a623, 0.6);
+    // Subtle warm accent from the side
+    const sideLight = new THREE.DirectionalLight(0xf5a623, 0.3);
     sideLight.position.set(5, 0, 0);
     displayScene.add(sideLight);
 }
@@ -186,12 +188,12 @@ function initCtaScene() {
     ctaScene = new THREE.Scene();
     
     ctaCamera = new THREE.PerspectiveCamera(
-        45,
+        35,
         container.clientWidth / container.clientHeight,
         0.1,
         1000
     );
-    ctaCamera.position.set(2, 1, 4);
+    ctaCamera.position.set(0, 0, 6);
     
     ctaRenderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -213,20 +215,23 @@ function initCtaScene() {
 }
 
 function setupCtaLighting() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     ctaScene.add(ambientLight);
     
-    const keyLight = new THREE.DirectionalLight(0xf5a623, 1.5);
-    keyLight.position.set(3, 3, 5);
-    ctaScene.add(keyLight);
+    // Strong front light to illuminate the screen
+    const frontLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    frontLight.position.set(0, 0, 5);
+    ctaScene.add(frontLight);
     
-    const fillLight = new THREE.DirectionalLight(0x00d4ff, 1);
-    fillLight.position.set(-3, 2, 3);
-    ctaScene.add(fillLight);
+    // Subtle warm accent from the side
+    const sideLight = new THREE.DirectionalLight(0xf5a623, 0.4);
+    sideLight.position.set(3, 2, 2);
+    ctaScene.add(sideLight);
     
-    const backLight = new THREE.PointLight(0xf5a623, 2, 10);
-    backLight.position.set(0, 0, -3);
-    ctaScene.add(backLight);
+    // Top light
+    const topLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    topLight.position.set(0, 5, 2);
+    ctaScene.add(topLight);
 }
 
 // ========================================
@@ -273,11 +278,17 @@ function loadPhoneModel() {
             heroScene.add(heroPhone);
             
             displayPhone = model.clone();
-            displayPhone.rotation.y = 0;
+            displayPhone.rotation.x = 0;
+            displayPhone.rotation.y = Math.PI / 2; // Rotate to face camera with screen visible
+            displayPhone.rotation.z = 0;
             displayScene.add(displayPhone);
             
             ctaPhone = model.clone();
-            ctaPhone.rotation.y = -Math.PI / 4;
+            ctaPhone.rotation.x = 0;
+            ctaPhone.rotation.y = Math.PI / 2; // Face forward showing screen
+            ctaPhone.rotation.z = 0;
+            ctaPhone.position.set(0, 0, 0);
+            ctaPhone.scale.set(2.0, 2.0, 2.0);
             ctaScene.add(ctaPhone);
             
             // Model loaded successfully
@@ -411,11 +422,13 @@ function createFallbackPhone() {
     heroScene.add(heroPhone);
     
     displayPhone = phoneGroup.clone();
-    displayPhone.rotation.y = 0;
+    displayPhone.rotation.y = Math.PI / 2; // Rotate to face camera with screen visible
     displayScene.add(displayPhone);
     
     ctaPhone = phoneGroup.clone();
-    ctaPhone.rotation.y = -Math.PI / 4;
+    ctaPhone.rotation.y = 0; // Fallback phone faces forward by default
+    ctaPhone.position.set(0, 0, 0);
+    ctaPhone.scale.set(1.1, 1.1, 1.1);
     ctaScene.add(ctaPhone);
 }
 
@@ -431,9 +444,9 @@ function animateHero() {
         // Smooth floating animation
         heroPhone.position.y = Math.sin(elapsedTime * 0.5) * 0.1;
         
-        // Mouse-influenced rotation
-        heroPhone.rotation.x += (targetRotationY * 0.3 - heroPhone.rotation.x) * 0.05;
-        heroPhone.rotation.y += (targetRotationX * 0.3 + Math.PI / 6 - heroPhone.rotation.y) * 0.05;
+        // Mouse-influenced rotation with smoother lerp
+        heroPhone.rotation.x = lerp(heroPhone.rotation.x, targetRotationY * 0.3, 0.08);
+        heroPhone.rotation.y = lerp(heroPhone.rotation.y, targetRotationX * 0.3 + Math.PI / 6, 0.08);
     }
     
     if (heroControls) {
@@ -443,19 +456,41 @@ function animateHero() {
     heroRenderer.render(heroScene, heroCamera);
 }
 
+// Store target values for smooth lerping
+let displayTargetRotY = Math.PI / 2;
+let displayTargetRotX = 0;
+let displayTargetPosY = 0;
+
 function animateDisplay() {
     displayAnimationId = requestAnimationFrame(animateDisplay);
     
     const elapsedTime = clock.getElapsedTime();
     
     if (displayPhone) {
-        // Gentle oscillation
-        displayPhone.rotation.y = Math.sin(elapsedTime * 0.3) * 0.2;
-        displayPhone.position.y = Math.sin(elapsedTime * 0.4) * 0.05;
+        // Calculate target values
+        displayTargetRotY = Math.PI / 2 + Math.sin(elapsedTime * 0.2) * 0.03;
+        displayTargetRotX = Math.sin(elapsedTime * 0.3) * 0.02;
+        displayTargetPosY = Math.sin(elapsedTime * 0.4) * 0.05;
+        
+        // Smooth lerp to targets
+        displayPhone.rotation.y = lerp(displayPhone.rotation.y, displayTargetRotY, 0.1);
+        displayPhone.rotation.x = lerp(displayPhone.rotation.x, displayTargetRotX, 0.1);
+        displayPhone.position.y = lerp(displayPhone.position.y, displayTargetPosY, 0.1);
+        
+        // Subtle scale pulse for "breathing" effect
+        const targetScale = 2 + Math.sin(elapsedTime * 0.5) * 0.02;
+        const currentScale = displayPhone.scale.x;
+        const newScale = lerp(currentScale, targetScale, 0.1);
+        displayPhone.scale.set(newScale, newScale, newScale);
     }
     
     displayRenderer.render(displayScene, displayCamera);
 }
+
+// Store target values for CTA phone
+let ctaTargetRotY = Math.PI / 2;
+let ctaTargetRotX = 0;
+let ctaTargetPosY = 0;
 
 function animateCta() {
     ctaAnimationId = requestAnimationFrame(animateCta);
@@ -463,9 +498,15 @@ function animateCta() {
     const elapsedTime = clock.getElapsedTime();
     
     if (ctaPhone) {
-        // Continuous slow rotation
-        ctaPhone.rotation.y = elapsedTime * 0.2;
-        ctaPhone.position.y = Math.sin(elapsedTime * 0.5) * 0.08;
+        // Calculate target values
+        ctaTargetRotY = Math.PI / 2 + Math.sin(elapsedTime * 0.3) * 0.03;
+        ctaTargetRotX = Math.sin(elapsedTime * 0.4) * 0.015;
+        ctaTargetPosY = Math.sin(elapsedTime * 0.5) * 0.03;
+        
+        // Smooth lerp to targets
+        ctaPhone.rotation.y = lerp(ctaPhone.rotation.y, ctaTargetRotY, 0.08);
+        ctaPhone.rotation.x = lerp(ctaPhone.rotation.x, ctaTargetRotX, 0.08);
+        ctaPhone.position.y = lerp(ctaPhone.position.y, ctaTargetPosY, 0.08);
     }
     
     ctaRenderer.render(ctaScene, ctaCamera);
@@ -542,7 +583,7 @@ function initScrollAnimations() {
     });
     
     // Smooth reveal for sections
-    const sections = document.querySelectorAll('.features-header, .display-content, .demo-header, .specs-header, .cta-content');
+    const sections = document.querySelectorAll('.features-header, .display-content, .specs-header, .cta-content, .story-content');
     
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -555,114 +596,60 @@ function initScrollAnimations() {
     
     sections.forEach((section) => {
         section.style.opacity = '0';
-        section.style.transform = 'translateY(40px)';
-        section.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         sectionObserver.observe(section);
     });
 }
 
 // ========================================
-// INTERACTIVE DEMO
+// PRE-ORDER UI
 // ========================================
 function initInteractiveDemo() {
-    const phoneScreen = document.querySelector('.phone-screen');
-    const controlBtns = document.querySelectorAll('.control-btn');
-    const appIcons = document.querySelectorAll('.app-icon');
-    const dockIcons = document.querySelectorAll('.dock-icon');
-    
-    // Theme toggle
-    controlBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-            controlBtns.forEach((b) => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const theme = btn.dataset.theme;
-            if (theme === 'light') {
-                phoneScreen.classList.add('light-theme');
-            } else {
-                phoneScreen.classList.remove('light-theme');
-            }
-        });
-    });
-    
-    // App icon interactions
-    appIcons.forEach((icon) => {
-        icon.addEventListener('click', () => {
-            const iconInner = icon.querySelector('.app-icon-inner');
-            
-            // Ripple effect
-            iconInner.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                iconInner.style.transform = 'scale(1)';
-            }, 150);
-            
-            // Show app launch animation
-            showAppLaunch(icon.dataset.app);
-        });
-    });
-    
-    // Dock icon interactions
-    dockIcons.forEach((icon) => {
-        icon.addEventListener('click', () => {
-            icon.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                icon.style.transform = '';
-            }, 150);
-        });
-    });
+    initPreorderUI();
 }
 
-function showAppLaunch(appName) {
-    const phoneScreen = document.querySelector('.phone-screen');
+function initPreorderUI() {
+    const storageOptions = document.querySelectorAll('input[name="storage"]');
+    const priceDisplay = document.getElementById('total-price');
     
-    // Create app launch overlay
-    const overlay = document.createElement('div');
-    overlay.className = 'app-launch-overlay';
-    overlay.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: ${getAppColor(appName)};
-        border-radius: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 24px;
-        font-weight: 600;
-        opacity: 0;
-        transform: scale(0.5);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 100;
-    `;
-    overlay.textContent = appName.charAt(0).toUpperCase() + appName.slice(1);
-    
-    phoneScreen.appendChild(overlay);
-    
-    // Animate in
-    requestAnimationFrame(() => {
-        overlay.style.opacity = '1';
-        overlay.style.transform = 'scale(1)';
-    });
-    
-    // Animate out after delay
-    setTimeout(() => {
-        overlay.style.opacity = '0';
-        overlay.style.transform = 'scale(1.1)';
-        setTimeout(() => overlay.remove(), 300);
-    }, 1000);
-}
-
-function getAppColor(appName) {
-    const colors = {
-        weather: 'linear-gradient(135deg, #48b2fe 0%, #0779e4 100%)',
-        camera: 'linear-gradient(135deg, #666 0%, #333 100%)',
-        music: 'linear-gradient(135deg, #fc5c7d 0%, #6a82fb 100%)',
-        settings: 'linear-gradient(135deg, #8e8e93 0%, #636366 100%)'
+    const prices = {
+        '256': 1199,
+        '512': 1399,
+        '1024': 1599
     };
-    return colors[appName] || colors.settings;
+    
+    if (!storageOptions.length || !priceDisplay) return;
+    
+    storageOptions.forEach(option => {
+        option.addEventListener('change', () => {
+            const selectedValue = option.value;
+            const price = prices[selectedValue];
+            priceDisplay.textContent = `$${price.toLocaleString()}`;
+            
+            // Add a subtle animation to the price
+            priceDisplay.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                priceDisplay.style.transform = 'scale(1)';
+            }, 100);
+        });
+    });
+    
+    // Pre-order button click
+    const preorderBtn = document.querySelector('.preorder-btn');
+    if (preorderBtn) {
+        preorderBtn.addEventListener('click', () => {
+            // Show confirmation animation
+            preorderBtn.innerHTML = '<span>✓ Added to Cart</span>';
+            preorderBtn.style.background = 'var(--color-accent)';
+            preorderBtn.style.transition = 'background 0.3s ease';
+            
+            setTimeout(() => {
+                preorderBtn.innerHTML = '<span>Pre-order Now</span>';
+                preorderBtn.style.background = '';
+            }, 1500);
+        });
+    }
 }
 
 // ========================================
@@ -685,17 +672,16 @@ function lerp(start, end, factor) {
 }
 
 // ========================================
-// GSAP-LIKE SMOOTH SCROLLING (Vanilla)
+// SMOOTH SCROLLING (Native)
 // ========================================
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });

@@ -29,11 +29,11 @@
         </div>
         <div class="nav-links">
             <a href="#hero">Overview</a>
+            <a href="#story">Story</a>
             <a href="#features">Features</a>
-            <a href="#display">Display</a>
             <a href="#specs">Specs</a>
         </div>
-        <button class="nav-cta">Pre-order</button>
+        <a href="#preorder" class="nav-cta">Pre-order</a>
     </nav>
 
     <!-- Hero Section -->
@@ -49,13 +49,13 @@
             </h1>
             <p class="hero-subtitle">The future, reimagined. A seamless fusion of art and technology that transcends everything you know about smartphones.</p>
             <div class="hero-cta">
-                <button class="btn-primary">
+                <a href="#features" class="btn-primary">
                     <span>Experience Now</span>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                </button>
-                <button class="btn-secondary">Watch Film</button>
+                </a>
+                <a href="#preorder" class="btn-secondary">Pre-order</a>
             </div>
         </div>
         <div class="hero-3d" id="hero-canvas"></div>
@@ -67,6 +67,47 @@
         </div>
     </section>
 
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-content">
+            <span class="section-label">The Origin</span>
+            <h2 class="section-title">Born from<br><span class="gradient-text">obsession.</span></h2>
+            <div class="story-text">
+                <p>
+                    In a hidden laboratory beneath the Swiss Alps, a team of 47 engineers spent 
+                    1,847 days pursuing an impossible dream. They called it Project Aurora — 
+                    a quest to create a device that could feel before you think, respond before 
+                    you act, and disappear when you need it most.
+                </p>
+                <p>
+                    Three prototypes were destroyed. Two engineers quit. One breakthrough changed 
+                    everything: the N1 Quantum Chip, a processor that doesn't just compute — it 
+                    anticipates. Built on principles borrowed from neuroscience and quantum mechanics, 
+                    it processes information the way the human mind does.
+                </p>
+                <p>
+                    The Nexus Phone isn't just a product. It's the culmination of 17 patents, 
+                    2,000 material tests, and a singular belief: that technology should feel 
+                    like an extension of yourself, not a distraction from life.
+                </p>
+            </div>
+            <div class="story-quote">
+                <blockquote>
+                    "We didn't set out to make a better phone. We set out to make the last phone 
+                    you'll ever need to think about."
+                </blockquote>
+                <cite>— Dr. Elena Vasquez, Chief Architect</cite>
+            </div>
+        </div>
+        <div class="story-visual">
+            <div class="story-lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-header">
@@ -74,7 +115,7 @@
             <h2 class="section-title">Engineered for<br><span class="gradient-text">the impossible.</span></h2>
         </div>
         
-        <div class="features-grid">
+        <div class="features-grid three-col">
             <div class="feature-card" data-feature="chip">
                 <div class="feature-icon">
                     <svg viewBox="0 0 48 48" fill="none">
@@ -84,21 +125,8 @@
                     </svg>
                 </div>
                 <h3>N1 Quantum Chip</h3>
-                <p>6nm architecture delivering 40% faster performance with neural processing that learns your habits.</p>
+                <p>6nm architecture delivering 40% faster performance with neural processing that learns your habits and anticipates your needs.</p>
                 <span class="feature-stat">4.2 TFLOPS</span>
-            </div>
-            
-            <div class="feature-card" data-feature="battery">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 48 48" fill="none">
-                        <rect x="6" y="14" width="32" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M38 20h4a2 2 0 012 2v4a2 2 0 01-2 2h-4" stroke="currentColor" stroke-width="1.5"/>
-                        <rect x="10" y="18" width="16" height="12" rx="2" fill="currentColor"/>
-                    </svg>
-                </div>
-                <h3>All-Day Intelligence</h3>
-                <p>Adaptive battery that optimizes power consumption based on your usage patterns. Up to 48 hours.</p>
-                <span class="feature-stat">5500 mAh</span>
             </div>
             
             <div class="feature-card" data-feature="camera">
@@ -110,7 +138,7 @@
                     </svg>
                 </div>
                 <h3>Quantum Lens Array</h3>
-                <p>200MP main sensor with computational photography that captures light like never before.</p>
+                <p>200MP main sensor with computational photography that captures light like never before. See in the dark. Freeze time.</p>
                 <span class="feature-stat">200 MP</span>
             </div>
             
@@ -123,7 +151,7 @@
                     </svg>
                 </div>
                 <h3>Infinity Edge Display</h3>
-                <p>6.9" ProMotion XDR display with 120Hz refresh rate and 2000 nits peak brightness.</p>
+                <p>6.9" ProMotion XDR display with 120Hz adaptive refresh. 2000 nits peak brightness that rivals the sun itself.</p>
                 <span class="feature-stat">120 Hz</span>
             </div>
         </div>
@@ -161,100 +189,6 @@
         </div>
     </section>
 
-    <!-- Interactive Demo Section -->
-    <section class="demo-section" id="demo">
-        <div class="demo-header">
-            <span class="section-label">Interactive</span>
-            <h2 class="section-title">Experience the<br><span class="gradient-text">interface.</span></h2>
-        </div>
-        
-        <div class="demo-container">
-            <div class="demo-phone-wrapper">
-                <div class="demo-phone" id="demo-phone">
-                    <div class="phone-screen">
-                        <div class="screen-notch"></div>
-                        <div class="screen-time">12:45</div>
-                        <div class="screen-date">Thursday, January 22</div>
-                        
-                        <div class="app-grid">
-                            <div class="app-icon" data-app="weather">
-                                <div class="app-icon-inner weather">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
-                                        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg>
-                                </div>
-                                <span>Weather</span>
-                            </div>
-                            <div class="app-icon" data-app="camera">
-                                <div class="app-icon-inner camera">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M4 8h2l2-3h8l2 3h2a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2v-9a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5"/>
-                                    </svg>
-                                </div>
-                                <span>Camera</span>
-                            </div>
-                            <div class="app-icon" data-app="music">
-                                <div class="app-icon-inner music">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.5"/>
-                                        <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                        <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                    </svg>
-                                </div>
-                                <span>Music</span>
-                            </div>
-                            <div class="app-icon" data-app="settings">
-                                <div class="app-icon-inner settings">
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg>
-                                </div>
-                                <span>Settings</span>
-                            </div>
-                        </div>
-                        
-                        <div class="screen-dock">
-                            <div class="dock-icon phone-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
-                                </svg>
-                            </div>
-                            <div class="dock-icon mail-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                            </div>
-                            <div class="dock-icon safari-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                                </svg>
-                            </div>
-                            <div class="dock-icon messages-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        
-                        <div class="screen-home-indicator"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="demo-controls">
-                <h3>Tap to Interact</h3>
-                <p>Click on app icons to see smooth transitions and animations in action.</p>
-                <div class="control-buttons">
-                    <button class="control-btn active" data-theme="dark">Dark Mode</button>
-                    <button class="control-btn" data-theme="light">Light Mode</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Specs Section -->
     <section class="specs-section" id="specs">
         <div class="specs-header">
@@ -262,67 +196,112 @@
             <h2 class="section-title">Every detail,<br><span class="gradient-text">perfected.</span></h2>
         </div>
         
-        <div class="specs-grid">
+        <div class="specs-grid three-col">
             <div class="spec-category">
-                <h4>Display</h4>
+                <h4>Display & Design</h4>
                 <ul>
                     <li><span>Size</span><span>6.9" OLED</span></li>
                     <li><span>Resolution</span><span>3200 × 1440</span></li>
                     <li><span>Refresh Rate</span><span>1-120Hz Adaptive</span></li>
                     <li><span>Peak Brightness</span><span>2000 nits</span></li>
-                    <li><span>HDR</span><span>HDR10+, Dolby Vision</span></li>
+                    <li><span>Protection</span><span>Ceramic Shield</span></li>
+                    <li><span>Weight</span><span>189g</span></li>
                 </ul>
             </div>
             
             <div class="spec-category">
-                <h4>Performance</h4>
+                <h4>Performance & Power</h4>
                 <ul>
                     <li><span>Chip</span><span>N1 Quantum</span></li>
                     <li><span>RAM</span><span>16GB LPDDR5X</span></li>
                     <li><span>Storage</span><span>256GB / 512GB / 1TB</span></li>
-                    <li><span>GPU</span><span>12-core Neural GPU</span></li>
-                    <li><span>AI</span><span>32-core NPU</span></li>
+                    <li><span>Battery</span><span>5500 mAh</span></li>
+                    <li><span>Charging</span><span>150W Wired / 50W Wireless</span></li>
+                    <li><span>Full Charge</span><span>19 minutes</span></li>
                 </ul>
             </div>
             
             <div class="spec-category">
-                <h4>Camera</h4>
+                <h4>Camera System</h4>
                 <ul>
                     <li><span>Main</span><span>200MP f/1.7 OIS</span></li>
                     <li><span>Ultra Wide</span><span>50MP f/2.2 120°</span></li>
                     <li><span>Telephoto</span><span>64MP 5x Optical</span></li>
                     <li><span>Front</span><span>32MP f/2.0</span></li>
                     <li><span>Video</span><span>8K 30fps, 4K 120fps</span></li>
-                </ul>
-            </div>
-            
-            <div class="spec-category">
-                <h4>Battery & Charging</h4>
-                <ul>
-                    <li><span>Capacity</span><span>5500 mAh</span></li>
-                    <li><span>Wired Charging</span><span>150W</span></li>
-                    <li><span>Wireless</span><span>50W Qi2</span></li>
-                    <li><span>Reverse</span><span>15W</span></li>
-                    <li><span>Full Charge</span><span>19 minutes</span></li>
+                    <li><span>Features</span><span>Night Mode, ProRAW</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="preorder">
+        <div class="cta-visual" id="cta-canvas"></div>
         <div class="cta-content">
             <h2>Ready to experience<br><span class="gradient-text">the future?</span></h2>
             <p>Pre-order now and be among the first to hold tomorrow in your hands.</p>
-            <div class="cta-buttons">
-                <button class="btn-primary large">
-                    <span>Pre-order — $1,199</span>
-                </button>
-                <button class="btn-secondary large">Learn More</button>
+            
+            <!-- Pre-order UI -->
+            <div class="preorder-ui">
+                <div class="preorder-options">
+                    <h4>Choose your storage</h4>
+                    <div class="storage-options">
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="256" checked>
+                            <span class="option-box">
+                                <span class="option-size">256GB</span>
+                                <span class="option-price">$1,199</span>
+                            </span>
+                        </label>
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="512">
+                            <span class="option-box">
+                                <span class="option-size">512GB</span>
+                                <span class="option-price">$1,399</span>
+                            </span>
+                        </label>
+                        <label class="storage-option">
+                            <input type="radio" name="storage" value="1024">
+                            <span class="option-box">
+                                <span class="option-size">1TB</span>
+                                <span class="option-price">$1,599</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <h4>Choose your color</h4>
+                    <div class="color-options">
+                        <label class="color-option">
+                            <input type="radio" name="color" value="midnight" checked>
+                            <span class="color-swatch midnight"></span>
+                            <span class="color-name">Midnight</span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="titanium">
+                            <span class="color-swatch titanium"></span>
+                            <span class="color-name">Titanium</span>
+                        </label>
+                        <label class="color-option">
+                            <input type="radio" name="color" value="gold">
+                            <span class="color-swatch gold"></span>
+                            <span class="color-name">Aurora Gold</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="preorder-summary">
+                    <div class="summary-price">
+                        <span class="price-label">Total</span>
+                        <span class="price-value" id="total-price">$1,199</span>
+                    </div>
+                    <button class="btn-primary large preorder-btn">
+                        <span>Pre-order Now</span>
+                    </button>
+                    <span class="cta-note">Free shipping. Free returns. 24-month warranty.</span>
+                </div>
             </div>
-            <span class="cta-note">Free shipping. Free returns. 24-month warranty.</span>
         </div>
-        <div class="cta-visual" id="cta-canvas"></div>
     </section>
 
     <!-- Footer -->
@@ -357,4 +336,3 @@
     <script type="module" src="main.js"></script>
 </body>
 </html>
-
